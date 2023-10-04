@@ -6,6 +6,8 @@
 
     display: flex;
     flex-direction: column;
+    padding-left: 25px; 
+    padding-top: 20px;
 }
 
 
@@ -15,6 +17,7 @@
     background: #FF4820;
     font-family: var(--font-family);
     font-weight: 500;
+    color: #fff;
     font-size: 18px;
     width: 200px;
     line-height: 25px;
@@ -34,6 +37,52 @@
     color: #fff;
     margin-bottom: 1rem;
 }
+.skeleton-loader {
+    display: inline-block;
+    height: 38px;
+    width: 200px; 
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  
+.website__categories_content ul.categories-list {
+    padding: 0;
+    list-style-type: none;
+    
+    
+  }
+  
+  .website__categories_content ul.categories-list li {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    background: none; 
+    color: #fff;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 1px;
+  }
+  
+  .website__categories_content ul.categories-list li:hover,
+  .website__categories_content ul.categories-list li.selected {
+    background: #FF4820;
+    color: #fff;
+  }
 
 
 @media screen and (max-width: 700px) {
@@ -51,6 +100,21 @@
         margin-bottom: 1px;
     
     }
+    .website__categories_content ul.categories-list li {
+        font-size: 11px;
+        width: 100px;
+        line-height: 10px;
+      }
+    .skeleton-loader {
+        display: inline-block;
+        height: 38px;
+        width: 100px; 
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
     .website__categories_content h1 {
         font-family: var(--font-family);
         font-size: 20.11px;

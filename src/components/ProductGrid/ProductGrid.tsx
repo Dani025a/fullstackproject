@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './productGrid.css'
-import { Category } from "../../hooks/useCategories"
 import useProducts from "../../hooks/useProducts";
 import ProductCard from '../ProductCard/ProductCard';
 import { ProductQuery } from '../../pages/Store';
-import Spinner from '../Spinner';
+import ProductCardLoader from '../ProductCard/ProductCardLoader';
 
 interface Props {
   productQuery: ProductQuery;
@@ -15,25 +14,23 @@ interface Props {
 const ProductGrid = ({ productQuery }: Props) => {
   const {data: products, error, isLoading} = useProducts(productQuery);
 
+  
   return (
     <>
-
-{(error || isLoading) &&
-        <div className="website__message-container">
-            {error && <div className='website__error-container'><p>{error}</p></div>}
-            {isLoading && <Spinner />}
+    {error && <p className="error-text">{error}</p>}
+      <div className="website__productgrid section__padding">
+        <div className="website__productgrid-container">
+          <div className="website__productgrid-container_content">
+            {isLoading && [...Array(20)].map((_, index) => (
+              <ProductCardLoader key={index} />
+            ))}
+            {products.map((product) => (
+              <ProductCard key={product.productId} product={product}/>
+            ))}
+          </div>
         </div>
-}
-    <div className="website__productgrid section__padding">
-    <div className="website__productgrid-container">
-      <div className="website__productgrid-container_content">
-        {products.map((product) => (
-          <ProductCard key={product.productId} product={product}/>
-        ))}
       </div>
-    </div>
-  </div>
-  </>
+    </>
   )
 }
 
