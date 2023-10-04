@@ -3,21 +3,29 @@ import { Category } from '../hooks/useCategories';
 import ProductGrid from '../components/ProductGrid/ProductGrid';
 import CategoryList from '../components/CategoryList/CategoryList';
 import './store.css'
+import { Product } from '../hooks/useProducts';
+
+export interface ProductQuery {
+  product: Product | null;
+  category: Category | null;
+  sortOrder: string;
+  searchText: string;
+}
+
 
 export const Store = () => {
-    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [productQuery, SetProductQuery] = useState<ProductQuery>({} as ProductQuery);
+
 
   return (
-    <div className="website__products" id="products">
-    <div className="website__products-container">
+    <div className="website__store-container">
     <CategoryList
-    onSelectCategory={(category) => setSelectedCategory(category)}
-    selectedCategory={selectedCategory}
+    onSelectCategory={(category) => SetProductQuery({ ...productQuery, category })}
+    selectedCategory={productQuery.category}
     />
     <ProductGrid
-    selectedcategory={selectedCategory}
+    productQuery={productQuery}
     />
-    </div>
     </div>
   )
 }

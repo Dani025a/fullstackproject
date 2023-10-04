@@ -1,5 +1,6 @@
 import useData from "./useData";
 import { Category } from "./useCategories"
+import { ProductQuery } from "../pages/Store";
 
 export interface Product {
   description: string;
@@ -11,7 +12,7 @@ export interface Product {
 
 
 const useProducts = (
-  selectedCategory: Category | null,
+  productQuery: ProductQuery
 ) =>
   useData<Product>(
     "products",
@@ -20,10 +21,12 @@ const useProducts = (
       
       params: {
 
-        categoryid: selectedCategory?.categoryId
+        categoryid: productQuery.category?.categoryId,
+        ordering: productQuery.sortOrder,
+        search: productQuery.searchText
       },
     },
-    [selectedCategory?.categoryId]
+    [productQuery]
   );
 
 export default useProducts;

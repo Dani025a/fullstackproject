@@ -1,11 +1,4 @@
-.website__products {
-    display: flex;
-    flex-direction: column;    
-    margin-left: 1rem;
-}
-
-
-.website__products-container {
+.website__store-container {
     display: flex;
     flex-direction: row;
 }

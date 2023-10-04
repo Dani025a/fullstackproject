@@ -2,7 +2,6 @@
 
 
 .website__categories_content {
-    width: 20%;
     height: 100%;
 
     display: flex;
@@ -51,5 +50,13 @@
         cursor: pointer;
         margin-bottom: 1px;
     
+    }
+    .website__categories_content h1 {
+        font-family: var(--font-family);
+        font-size: 20.11px;
+        font-weight: 800;
+        line-height: 30.30px;
+        color: #fff;
+        margin-bottom: 1rem;
     }
 }

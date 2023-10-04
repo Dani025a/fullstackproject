@@ -5,11 +5,7 @@ import useProducts from "../../hooks/useProducts"
 
 export function ShoppingCart() {
   const { closeCart, cartItems } = useShoppingCart()
-  const {
-    data: products,
-    error,
-    isLoading,
-  } = useProducts(null);
+  const {data: products, error, isLoading} = useProducts({product: null, category: null, sortOrder: '', searchText: ''});
   return (
     <>
     {error && <p>{error}</p>}

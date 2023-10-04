@@ -4,7 +4,7 @@ import './categoryList.css'
 
 interface Props {
   selectedCategory: Category | null;
-  onSelectCategory: (category: Category) => void;
+  onSelectCategory: (category: Category | null) => void;
 }
 
 const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
@@ -12,11 +12,17 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
 
   if (error) return null;
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return null;
 
   return (
       <div className="website__categories_content">
       <h1>Categories</h1>
+        <button
+          type="button"
+          onClick={() => onSelectCategory(null)}
+        >
+          Clear Categor
+        </button>
       <ul>
         {categories?.map((category) => (<button
         onClick={() => onSelectCategory(category)}
