@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { Navbar } from './components'
+import './app.css'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { Category } from './hooks/useCategories'
+import { Store } from './pages/Store'
+import Home from './pages/Home'
+import ProductDetail from './components/ProductDetail/ProductDetail'
+import { ShoppingCartProvider } from './context/ShoppingCartContext'
+import { ShoppingCart } from './components/Cart/ShoppingCart'
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <ShoppingCartProvider>
+  <Router>
+    <div className='App'>
+        <div className='gradient__bg'>
+          <Navbar/>
+        </div>
+      <Routes>
+      <Route path="/" element={<Home/>}/>
+        <Route path="/allproducts" element={<Store/>}/>
+        <Route path="/aboutus" element={<ProductDetail/>}/>
+        <Route path="/cart" element={<ShoppingCart/>}/>
+      </Routes>
+      </div>
+    </Router>
+    </ShoppingCartProvider>
+  )
 }
 
-export default App;
+export default App 

@@ -1,0 +1,15 @@
+.website__products {
+    display: flex;
+    flex-direction: column;    
+    margin-left: 1rem;
+}
+
+
+.website__products-container {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
