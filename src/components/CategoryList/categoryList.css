@@ -1,33 +1,14 @@
-
-
+:root {
+  --font-family: 'Your Font Family', sans-serif;
+}
 
 .website__categories_content {
     height: 100%;
-
     display: flex;
     flex-direction: column;
     padding-left: 25px; 
     padding-top: 20px;
 }
-
-
-
-.website__categories_content button {
-    padding: 0.5rem 1rem;
-    background: #FF4820;
-    font-family: var(--font-family);
-    font-weight: 500;
-    color: #fff;
-    font-size: 18px;
-    width: 200px;
-    line-height: 25px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    margin-bottom: 1px;
-
-}
-
 
 .website__categories_content h1 {
     font-family: var(--font-family);
@@ -37,6 +18,7 @@
     color: #fff;
     margin-bottom: 1rem;
 }
+
 .skeleton-loader {
     display: inline-block;
     height: 38px;
@@ -46,25 +28,23 @@
     animation: loading 1.5s infinite;
     border-radius: 4px;
     margin-bottom: 10px;
-  }
-  
-  @keyframes loading {
+}
+
+@keyframes loading {
     0% {
       background-position: 200% 0;
     }
     100% {
       background-position: -200% 0;
     }
-  }
-  
+}
+
 .website__categories_content ul.categories-list {
     padding: 0;
     list-style-type: none;
-    
-    
-  }
-  
-  .website__categories_content ul.categories-list li {
+}
+
+.website__categories_content ul.categories-list li {
     cursor: pointer;
     padding: 0.5rem 1rem;
     background: none; 
@@ -76,51 +56,43 @@
     text-transform: capitalize;
     text-align: center;
     margin-bottom: 1px;
-  }
-  
-  .website__categories_content ul.categories-list li:hover,
-  .website__categories_content ul.categories-list li.selected {
-    background: #FF4820;
-    color: #fff;
-  }
+    position: relative;
+}
 
+.website__categories_content ul.categories-list li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 80%; 
+  height: 2px; 
+  background: linear-gradient(to right, transparent, #FFF, transparent);
+  transform: translateX(-50%);
+  opacity: 0.5;
+  transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+.website__categories_content ul.categories-list li:hover::after,
+.website__categories_content ul.categories-list li.selected::after {
+  opacity: 1;
+  background: linear-gradient(to right, transparent, #FF4820, transparent);
+}
+
+.website__categories_content ul.categories-list li.selected {
+    color: #FF4820;
+}
 
 @media screen and (max-width: 700px) {
-    .website__categories_content button {
-        padding: 0.5rem 1rem;
-        background: #FF4820;
-        font-family: var(--font-family);
-        font-weight: 500;
-        font-size: 11px;
-        width: 100px;
-        line-height: 10px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        margin-bottom: 1px;
-    
+    .website__categories_content h1 {
+        font-size: 20.11px;
+        line-height: 30.30px;
+    }
+    .skeleton-loader {
+        width: 100px; 
     }
     .website__categories_content ul.categories-list li {
         font-size: 11px;
         width: 100px;
         line-height: 10px;
-      }
-    .skeleton-loader {
-        display: inline-block;
-        height: 38px;
-        width: 100px; 
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-        border-radius: 4px;
-        margin-bottom: 10px;
-      }
-    .website__categories_content h1 {
-        font-family: var(--font-family);
-        font-size: 20.11px;
-        font-weight: 800;
-        line-height: 30.30px;
-        color: #fff;
-        margin-bottom: 1rem;
     }
 }
