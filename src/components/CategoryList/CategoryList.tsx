@@ -11,6 +11,8 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
   const { data: categories, error, isLoading } = useCategories();
   const numOfSkeletons = 10;  // Adjust the number according to your design
 
+  if (error) return (null)
+
   if (isLoading) return (
     <div className="website__categories_content">
       <h1>Categories</h1>

@@ -14,7 +14,7 @@ interface Props {
 const ProductGrid = ({ productQuery }: Props) => {
   const {data: products, error, isLoading} = useProducts(productQuery);
 
-  
+  if (error) return <div><p className="error-text">{error}</p></div>;
   return (
     <>
     {error && <p className="error-text">{error}</p>}

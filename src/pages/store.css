@@ -10,13 +10,5 @@
     flex-direction: row;
 }
 
-.website__store-container > :first-child {
-    border-right: 1px solid rgba(255, 255, 255, 0.5); 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
 
-    margin-right: 20px;
-    padding-bottom: 20px;
-    padding-right: 20px;
-    height: 100%; 
-}
 
