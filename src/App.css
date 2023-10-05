@@ -15,7 +15,7 @@ a {
 }
 
 .gradient__bg {
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(135,135,135,1) 75%, rgba(162,162,162,1) 100%);
+  background:linear-gradient(90deg, rgba(77,77,77,1) 0%, rgba(92,92,92,1) 61%, rgba(124,124,124,1) 100%);
 }
 
 .gradient__text {
