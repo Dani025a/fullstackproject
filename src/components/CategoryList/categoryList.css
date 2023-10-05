@@ -1,7 +1,3 @@
-:root {
-  --font-family: 'Your Font Family', sans-serif;
-}
-
 .website__categories_content {
     height: 100%;
     display: flex;
@@ -56,32 +52,26 @@
     text-transform: capitalize;
     text-align: center;
     margin-bottom: 1px;
-    position: relative;
 }
 
-.website__categories_content ul.categories-list li::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 80%; 
-  height: 2px; 
-  background: linear-gradient(to right, transparent, #FFF, transparent);
-  transform: translateX(-50%);
-  opacity: 0.5;
-  transition: opacity 0.3s ease, background 0.3s ease;
+.website__categories_content ul.categories-list li div.underline {
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #FFF, transparent);
+    margin: 5px auto 0;
+    opacity: 0.5;
+    transition: opacity 0.3s ease, background 0.3s ease;
 }
 
-.website__categories_content ul.categories-list li:hover::after,
-.website__categories_content ul.categories-list li.selected::after {
-  opacity: 1;
-  background: linear-gradient(to right, transparent, #FF4820, transparent);
+.website__categories_content ul.categories-list li:hover div.underline,
+.website__categories_content ul.categories-list li.selected div.underline {
+    opacity: 1;
+    background: linear-gradient(to right, transparent, #FF4820, transparent);
 }
 
 .website__categories_content ul.categories-list li.selected {
     color: #FF4820;
 }
-
 @media screen and (max-width: 700px) {
     .website__categories_content h1 {
         font-size: 20.11px;

@@ -16,16 +16,15 @@ export interface ProductQuery {
 export const Store = () => {
   const [productQuery, SetProductQuery] = useState<ProductQuery>({} as ProductQuery);
 
-
   return (
     <div className="website__store-container">
-    <CategoryList
-    onSelectCategory={(category) => SetProductQuery({ ...productQuery, category })}
-    selectedCategory={productQuery.category}
-    />
-    <ProductGrid
-    productQuery={productQuery}
-    />
+      <CategoryList
+        onSelectCategory={(category) => SetProductQuery({ ...productQuery, category })}
+        selectedCategory={productQuery.category}
+      />
+      <ProductGrid
+        productQuery={productQuery}
+      />
     </div>
   )
 }

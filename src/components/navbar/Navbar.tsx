@@ -1,18 +1,26 @@
-import { useContext, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './navbar.css'
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import logo from '../../assets/logo.svg';
 import signin from '../../assets/signin.svg';
 import cart from '../../assets/cart.svg';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
-import { useHref } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleMenuSign, setToogleMenuSign] = useState(false);
   const { openCart, cartQuantity } = useShoppingCart()
+  const [scrolled, setScrolled] = useState(false);
 
+  const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 60) {
+          setScrolled(true);
+      } else {
+          setScrolled(false);
+      }
+  };
   
   const openMenu = () => {
     setToggleMenu(true)
@@ -23,7 +31,20 @@ const Navbar = () => {
     setToogleMenuSign(true)
   }
 
-  return (
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+}, []);
+
+let navbarClasses = ['webshop__navbar', 'gradient__bg'];
+if (scrolled) {
+    navbarClasses.push('scrolled');
+}
+
+return (
+    <div className={navbarClasses.join(' ')}>
     <div className="webshop__navbar">
       <div className="webshop__navbar-links">
         <div className="webshop__navbar-links_logo">
@@ -31,7 +52,7 @@ const Navbar = () => {
         </div>
         <div className="webshop__navbar-links_container">
           <p><a href="/">Home</a></p>
-          <p><a href="/allproducts">Products</a></p>
+          <p><a href="/products">Products</a></p>
           <p><a href="/aboutus">About us</a></p>
         </div>
       </div>
@@ -68,6 +89,7 @@ const Navbar = () => {
         </div>
         )}
       </div>
+    </div>
     </div>
   );
 };

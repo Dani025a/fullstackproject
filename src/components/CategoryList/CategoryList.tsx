@@ -30,8 +30,10 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
             className={!selectedCategory ? 'selected' : ''} 
             onClick={() => onSelectCategory(null)}
           >
-            Clear Categories
+            All products
+            <div className="underline"></div>
           </li>
+          
           {categories?.map((category) => (
             <li 
               key={category.categoryId} 
@@ -39,7 +41,9 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
               onClick={() => onSelectCategory(category)}
             >
               {category.name}
+              <div className="underline"></div>
             </li>
+            
           ))}
         </ul>
     </div>

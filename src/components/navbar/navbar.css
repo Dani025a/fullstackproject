@@ -1,9 +1,20 @@
+
 .webshop__navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 2.7rem 6rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    transition: background 0.3s ease;
+    height: 60px;
+}
 
-    padding: 2rem 6rem;
+.webshop__navbar.scrolled {
+    background: linear-gradient(90deg, rgba(77,77,77,0.7) 0%, rgba(92,92,92,0.7) 61%, rgba(124,124,124,0.7) 100%);
 }
 
 .webshop__navbar-links {
@@ -131,9 +142,4 @@
     }
 }
 
-@media screen and (max-width: 700px) {
-    .webshop__navbar {
-        padding: 2rem 4rem;
-    }
-}
 
