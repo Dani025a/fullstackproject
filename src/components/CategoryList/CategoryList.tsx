@@ -9,7 +9,7 @@ interface Props {
 
 const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
   const { data: categories, error, isLoading } = useCategories();
-  const numOfSkeletons = 10;  // Adjust the number according to your design
+  const numOfSkeletons = 10;
 
   if (error) return (null)
 
