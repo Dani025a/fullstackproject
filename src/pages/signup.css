@@ -1,0 +1,114 @@
+.website__signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .website__signup-box {
+    background-color: var(--color-footer);
+    padding: 1rem;
+    border-radius: 8px;
+    color: white;
+    width: 400px;
+  }
+  
+  .website__signup-box input {
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    outline: none;
+    color: #333;
+    background-color: #fff;
+  }
+  
+  .website__signup-box input:focus {
+    border-color: #FF4820;
+  }
+  
+  .website__signup-button {
+    width: 100%;
+    padding: 0.5rem 0rem 0.5rem 0rem;
+    color: #fff;
+    background: #FF4820;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 2px;
+  }
+  
+  .website__signup-button:hover {
+    background: #e4411a;
+  }
+  
+  .website__signup-signin-link {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  .website__signup-signin-link:hover {
+    color: #FF4820;
+  }
+
+  .website__signup-box p {
+    margin: 1rem 0;
+    font-size: 15px;
+    font-family: var(--font-family);
+  }
+
+  @media only screen and (max-width: 600px) {
+    .website__signup-box {
+      padding: 0.5rem;
+      margin: 1rem;
+
+    }
+  
+    .website__signup-box input,
+    .website__signup-button {
+      font-size: 16px;
+    }
+  
+    .website__signup-box p {
+      font-size: 14px;
+    }
+
+    .website__signup-box input{
+        width: 100%;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        outline: none;
+        color: #333;
+        background-color: #fff;
+      }
+      
+  }
+
+  @media only screen and (max-height: 730px) {
+    .website__signup-box {
+      margin-top: 80px
+    }
+
+  }
+
+  @media only screen and (max-height: 650px) {
+    .website__signup-box {
+      margin-top: 120px
+    }
+
+  }
+
+  
+  @media only screen and (max-height: 620px) {
+    .website__signup-box {
+      margin-top: 150px
+    }
+
+  }

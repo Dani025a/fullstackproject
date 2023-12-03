@@ -36,8 +36,8 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
           
           {categories?.map((category) => (
             <li 
-              key={category.categoryId} 
-              className={selectedCategory?.categoryId === category.categoryId ? 'selected' : ''} 
+              key={category.id} 
+              className={selectedCategory?.id === category.id ? 'selected' : ''} 
               onClick={() => onSelectCategory(category)}
             >
               {category.name}

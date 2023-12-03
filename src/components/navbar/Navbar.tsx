@@ -6,12 +6,20 @@ import signin from '../../assets/signin.svg';
 import cart from '../../assets/cart.svg';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 import { Link } from 'react-router-dom';
+import {isUserSignedIn, signOut} from '../../utills/authUtils'
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleMenuSign, setToogleMenuSign] = useState(false);
   const { openCart, cartQuantity } = useShoppingCart()
   const [scrolled, setScrolled] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(isUserSignedIn());
+  
+  const handleSignOut = () => {
+    signOut();
+    setIsLoggedIn(false); 
+  };
 
   const handleScroll = () => {
       const offset = window.scrollY;
@@ -44,35 +52,55 @@ if (scrolled) {
 }
 
 return (
-    <div className={navbarClasses.join(' ')}>
+  <div className={navbarClasses.join(' ')}>
     <div className="webshop__navbar">
       <div className="webshop__navbar-links">
         <div className="webshop__navbar-links_logo">
-          <img src={logo} />
+          <img src={logo} alt="Logo" />
         </div>
         <div className="webshop__navbar-links_container">
-          <p><a href="/">Home</a></p>
-          <p><a href="/products">Products</a></p>
-          <p><a href="/aboutus">About us</a></p>
+          <p><Link to="/">Home</Link></p>
+          <p><Link to="/products">Products</Link></p>
+          <p><Link to="/aboutus">About us</Link></p>
         </div>
       </div>
       <div className="webshop__navbar-signin ">
-      {toggleMenuSign
-          ? <RiCloseLine color="#fff" size={27} onClick={() => setToogleMenuSign(false)} />
-          : <img src={signin} onClick={() => openSignMenu()} />}
-        {toggleMenuSign && (
-        <div className="webshop__navbar-menu_container scale-up-center">
-          <div className="webshop__navbar-menu_container-links">
-          <p><a href="/signin">Sign In</a></p>
-          <p><a href="/signup">Sign Up</a></p>
-          </div>
-        </div>
+        {isLoggedIn ? (
+                    <>
+                    {toggleMenuSign
+                      ? <RiCloseLine color="#fff" size={27} onClick={() => setToogleMenuSign(false)} />
+                      : <img src={signin} alt="Sign In" onClick={() => openSignMenu()} />}
+                    {toggleMenuSign && (
+                      <div className="webshop__navbar-menu_container scale-up-center">
+                        <div className="webshop__navbar-menu_container-links">
+                        <p><Link to="/profile">Profile</Link></p>
+                        <p><Link to="/orders">Orders</Link></p>
+                        <p onClick={handleSignOut}><Link to="/home">Sign Out</Link></p>
+                        </div>
+                      </div>
+                    )}
+                  </>
+          
+        ) : (
+          <>
+            {toggleMenuSign
+              ? <RiCloseLine color="#fff" size={27} onClick={() => setToogleMenuSign(false)} />
+              : <img src={signin} alt="Sign In" onClick={() => openSignMenu()} />}
+            {toggleMenuSign && (
+              <div className="webshop__navbar-menu_container scale-up-center">
+                <div className="webshop__navbar-menu_container-links">
+                  <p><Link to="/signin">Sign In</Link></p>
+                  <p><Link to="/signup">Sign Up</Link></p>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
       <div className="webshop__navbar-cart">
-        <Link to={"/cart"}>
-        <img src={cart}/>
-      <p>{cartQuantity}</p>
+        <Link to="/cart">
+          <img src={cart} alt="Cart" />
+          <p>{cartQuantity}</p>
         </Link>
       </div>
       <div className="webshop__navbar-menu">
@@ -80,18 +108,18 @@ return (
           ? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
           : <RiMenu3Line color="#fff" size={27} onClick={() => openMenu()} />}
         {toggleMenu && (
-        <div className="webshop__navbar-menu_container scale-up-center">
-          <div className="webshop__navbar-menu_container-links">
-          <p><a href="/">Home</a></p>
-          <p><a href="/products">Products</a></p>
-          <p><a href="/aboutus">About us</a></p>
+          <div className="webshop__navbar-menu_container scale-up-center">
+            <div className="webshop__navbar-menu_container-links">
+              <p><Link to="/">Home</Link></p>
+              <p><Link to="/products">Products</Link></p>
+              <p><Link to="/aboutus">About us</Link></p>
+            </div>
           </div>
-        </div>
         )}
       </div>
     </div>
-    </div>
-  );
+  </div>
+);
 };
 
 export default Navbar;

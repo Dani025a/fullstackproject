@@ -1,7 +1,21 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const apiClient = axios.create({
-  baseURL: "https://localhost:7221/api",
+  baseURL: "http://localhost:3000/api/sql/",
 });
 
-export default apiClient;
+
+class ApiClient<T> {
+  endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = endpoint;
+  }
+
+  getAll = (config?: AxiosRequestConfig) =>
+  apiClient
+      .get<T[]>(this.endpoint, config)
+      .then((res) => res.data);
+}
+
+export default ApiClient;

@@ -14,7 +14,7 @@ const ProductCard = ({ product }: Props) => {
     decreaseCartQuantity,
     removeFromCart,
   } = useShoppingCart()
-  const quantity = getItemQuantity(product.productId)
+  const quantity = getItemQuantity(product.id)
 
   return(
   <div className="website__productgrid-container_productcard" >
@@ -24,22 +24,22 @@ const ProductCard = ({ product }: Props) => {
     <div className="website__productgrid-container_productcard-content">
       <div>
         <h3>{product.name}</h3>
-        <h4>{product.productId}  DKK</h4>
+        <h4>{product.price}  DKK</h4>
       </div>
     </div>
     <div className="website__productgrid-container_productcard-buy">
     {quantity === 0 ? (
-    <button onClick={() => increaseCartQuantity(product.productId)}>Buy</button>
+    <button onClick={() => increaseCartQuantity(product.id)}>Buy</button>
     ) : (
       <div  className="website__productgrid-container_productcard-buyedit">
         <div  className="website__productgrid-container_productcard_buyedit-decrease">
-        <button onClick={() => decreaseCartQuantity(product.productId)}>-</button>
+        <button onClick={() => decreaseCartQuantity(product.id)}>-</button>
         </div>
         <div  className="website__productgrid-container_productcard_buyedit-increase">
-        <button onClick={() => increaseCartQuantity(product.productId)}>+</button>
+        <button onClick={() => increaseCartQuantity(product.id)}>+</button>
         </div>
         <div  className="website__productgrid-container_productcard_buyedit-remove">
-        <button onClick={() => removeFromCart(product.productId)}>Remove</button>
+        <button onClick={() => removeFromCart(product.id)}>Remove</button>
         </div>
         <div  className="website__productgrid-container_productcard_buyedit-quantity">
           <button>{quantity}</button>

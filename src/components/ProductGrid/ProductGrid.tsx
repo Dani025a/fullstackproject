@@ -14,7 +14,7 @@ interface Props {
 const ProductGrid = ({ productQuery }: Props) => {
   const {data: products, error, isLoading} = useProducts(productQuery);
 
-  if (error) return <div><p className="error-text">{error}</p></div>;
+  if (error) return <div><p className="error-text">{error.message}</p></div>;
   
   return (
     <>
@@ -25,8 +25,8 @@ const ProductGrid = ({ productQuery }: Props) => {
             {isLoading && [...Array(20)].map((_, index) => (
               <ProductCardLoader key={index} />
             ))}
-            {products.map((product) => (
-              <ProductCard key={product.productId} product={product}/>
+            {products?.map((product) => (
+              <ProductCard key={product.id} product={product}/>
             ))}
           </div>
         </div>

@@ -1,32 +1,37 @@
-import useData from "./useData";
-import { Category } from "./useCategories"
 import { ProductQuery } from "../pages/Store";
+import { useQuery } from "@tanstack/react-query";
+import ApiClient from "../services/api-client";
 
 export interface Product {
   description: string;
   imageurl: string;
   name: string;
   price: number;
-  productId: number;
+  id: number;
 }
 
 
-const useProducts = (
-  productQuery: ProductQuery
-) =>
-  useData<Product>(
-    "products",
-    {
 
-      
-      params: {
+const apiClient = new ApiClient<Product>("/products");
 
-        categoryid: productQuery.category?.categoryId,
-        ordering: productQuery.sortOrder,
-        search: productQuery.searchText
-      },
+const useProducts = (productQuery: ProductQuery) => {
+  const categoryId = productQuery.category?.id;
+  console.log('Category ID:', categoryId);
+  
+  const apiParams = {
+    params: {
+      categoryid: categoryId,
+      ordering: productQuery.sortOrder,
+      search: productQuery.searchText,
     },
-    [productQuery]
+  };
+
+  console.log('API Params:', apiParams);  // Log API parameters
+
+  return useQuery<Product[], Error>(["products", productQuery], () =>
+    apiClient.getAll(apiParams)
   );
+};
+
 
 export default useProducts;

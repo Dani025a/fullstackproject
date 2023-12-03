@@ -133,6 +133,9 @@
 }
 
 @media screen and (max-width: 1050px) {
+    .webshop__navbar{
+        padding: 2.7rem 3rem;
+    }
     .webshop__navbar-links_container {
         display: none;
     }

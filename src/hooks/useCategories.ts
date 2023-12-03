@@ -1,10 +1,18 @@
-import useData from "./useData";
+import ApiClient from "../services/api-client";
+import { useQuery } from "@tanstack/react-query";
+
 
 export interface Category {
-  categoryId: number;
+  id: number;
   name: string;
 }
 
-const useCategories = () => useData<Category>("categories");
+const apiClient = new ApiClient<Category>("/categories");
+
+const useCategories = () => {
+  return useQuery<Category[], Error>(["categories"], () =>
+    apiClient.getAll({})
+  );
+};
 
 export default useCategories;
