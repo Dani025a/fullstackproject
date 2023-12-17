@@ -4,6 +4,7 @@
     flex-direction: column;
     padding-left: 25px; 
     padding-top: 20px;
+    overflow-y: auto;
 }
 
 .website__categories_content h1 {
@@ -38,6 +39,7 @@
 .website__categories_content ul.categories-list {
     padding: 0;
     list-style-type: none;
+    overflow-y: auto;
 }
 
 .website__categories_content ul.categories-list li {

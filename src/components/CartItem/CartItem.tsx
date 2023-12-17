@@ -1,5 +1,6 @@
 import { useShoppingCart } from "../../context/ShoppingCartContext"
-import useProducts from "../../hooks/useProducts"
+import useProductsCart from "../../hooks/useProductsCart"
+import './cartItem.css'
 
 
 type CartItemProps = {
@@ -8,37 +9,23 @@ type CartItemProps = {
 }
 
 export function CartItem({ id, quantity }: CartItemProps) {
-  const { removeFromCart } = useShoppingCart()
-  const {data: products, error, isLoading} = useProducts({product: null, category: null, sortOrder: '', searchText: ''});
+  const { increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart()
+  const { data: products } = useProductsCart();
 
   const item = products?.find(i => i.id === id)
   if (item == null) return null
 
   return (
-    <div className="website__productgrid-container_productcard" >
-    <div className="website__productgrid-container_productcard-image">
-      <img src={item.imageurl} alt="productgrid_image" />
-    </div>
-    <div className="website__productgrid-container_productcard-content">
-      <div>
-        <h3>{item.name}</h3>
-        <h4>{item.price}  DKK</h4>
+    <div className='product-card'>
+      <button className='remove-button' onClick={() => removeFromCart(item.id)}>×</button>
+      <img src={item.imageurl} alt={item.name} className='product-image' />
+      <span className='product-name'>{item.name}</span>
+      <div className='quantity-selector'>
+        <button onClick={() => decreaseCartQuantity(item.id)}>-</button>
+        <span>{quantity}</span>
+        <button onClick={() => increaseCartQuantity(item.id)}>+</button>
       </div>
+      <span className='product-price'>{item.price} kr</span>
     </div>
-    <div className="website__productgrid-container_productcard-buy">
-
-      <div  className="website__productgrid-container_productcard-buyedit">
-        <div  className="website__productgrid-container_productcard_buyedit-remove">
-        <button onClick={() => removeFromCart(item.id)}>Remove</button>
-        </div>
-        <div  className="website__productgrid-container_productcard_buyedit-quantity">
-          <button>{quantity}</button>
-        </div>
-      </div>
-    </div>
-    <div className="website__productgrid-container_productcard-learnmore">
-    <button>Learn more</button>
-    </div>
-  </div>
-  )
-}
+  );
+};

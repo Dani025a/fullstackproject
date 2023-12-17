@@ -42,3 +42,27 @@
 .category-list {
     margin-top: 40px;
 }
+.sort-dropdown {
+    position: absolute;
+    right: 100px;
+    top: 10px;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  .sort-dropdown select {
+    width: 200px;
+    height: 40px;
+    background-color: #FF4820;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+.sort-dropdown select option {
+    background: #fff;
+    color: #333;
+}

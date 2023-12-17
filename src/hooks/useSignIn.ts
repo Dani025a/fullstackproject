@@ -1,84 +1,53 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import { useAuth } from '../context/authContext';
+import Cookies from 'js-cookie';
+import ApiClient from "../services/api-client";
 
-interface User {
+
+export interface User {
+  token: string;
   id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone_number: string;
 }
 
-interface SignInResult {
-  email: string;
-  password: string;
-  error: string | null;
-  isLoading: boolean;
-  user: User | null;
-  token: string | null;
-  setEmail: Dispatch<SetStateAction<string>>;
-  setPassword: Dispatch<SetStateAction<string>>;
-  signIn: () => Promise<void>;
-}
+const apiClient = new ApiClient<User>("/users/signin");
 
-const apiClient = axios.create({
-  baseURL: "http://localhost:3000/api/sql/",
-});
-
-const useSignIn = (): SignInResult => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+const useSignIn = () => {
+  const { login, logout } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null); // Initialize token state
+  const [error, setError] = useState<string | null>(null);
 
-  const signIn = async () => {
+  const signIn = async (email: string, password: string) => {
     try {
       setIsLoading(true);
-  
-      const response = await apiClient.post('/users/signin', {
-        email,
-        password,
-      });
-  
-      console.log('Server Response:', response);
-  
-      const responseToken = response.data.user.token;
-      const userData = response.data.user.user;
-      console.log(userData)
-      localStorage.setItem('user', userData)
-      localStorage.setItem('token', responseToken);
-  
-      setUser(userData);
-      setToken(responseToken); 
-      setError(null);
-    } catch (error: any) {
-      console.error('Signin error:', error);
-  
-      if (error.response && error.response.data && error.response.data.error) {
-        setError(error.response.data.error);
+      const result = await apiClient.signIn(email, password);
+
+      if (result.error) {
+        setError(result.error);
       } else {
-        setError('An error occurred during sign-in');
+        const { token, id, expirationTimeInSeconds } = result;
+        
+        const expirationTime = Date.now() + expirationTimeInSeconds * 1000;
+        login(token, expirationTime);
+
+        Cookies.set('token', token);
+        Cookies.set('id', id);
+        Cookies.set('expirationTime', expirationTime.toString());
+
+        return { id, token, expirationTime };
+      }
+    } catch (error: any) {
+      if (error.response && error.response.status === 401) {
+        logout();
+        setError('Session expired. Please log in again.');
+      } else {
+        setError(error.message);
       }
     } finally {
       setIsLoading(false);
-       console.log(localStorage.getItem('token'))
     }
   };
-  
 
-  return {
-    email,
-    password,
-    error,
-    isLoading,
-    user,
-    token,
-    setEmail,
-    setPassword,
-    signIn,
-  };
+  return { signIn, isLoading, error };
 };
 
 export default useSignIn;

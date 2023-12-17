@@ -2,6 +2,7 @@ import React from 'react';
 import './productCard.css'
 import { Product } from '../../hooks/useProducts';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
+import { Link } from 'react-router-dom';
 
 interface Props { 
   product: Product
@@ -48,7 +49,9 @@ const ProductCard = ({ product }: Props) => {
     )}
     </div>
     <div className="website__productgrid-container_productcard-learnmore">
-    <button>Learn more</button>
+    <Link to={`/product/${product.name}`} state={{ product: product }}>
+          <button>Learn more</button>
+        </Link>
     </div>
   </div>
   );

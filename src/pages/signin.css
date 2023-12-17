@@ -61,6 +61,10 @@
     font-size: 15px;
     font-family: var(--font-family);
   }
+  .website__signin-error {
+    color: red;
+    font-size: 17px;
+  }
 
   @media only screen and (max-width: 600px) {
     .website__signin-box {
@@ -75,6 +79,7 @@
   
     .website__signin-box p {
       font-size: 14px;
+      color: red;
     }
 
     .website__signin-box input{

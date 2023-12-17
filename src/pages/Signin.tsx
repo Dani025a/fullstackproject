@@ -1,29 +1,24 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useSignIn from '../hooks/useSignIn';
 import './signin.css';
-const Signin = () => {
-  const {
-    email,
-    password,
-    error,
-    isLoading,
-    setEmail,
-    setPassword,
-    signIn,
-  } = useSignIn();
 
+const Signin = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { signIn, isLoading, error } = useSignIn(); // Use the hook
   const navigate = useNavigate();
 
-const handleSubmit = async (e: { preventDefault: () => void }) => {
-  e.preventDefault();
-  await signIn();
-  if (!error) {
-    navigate('/home');
-  } else {
-    console.error('Sign-in error:', error);
-  }
-};
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const result = await signIn(email, password);
+
+    if (result) {
+      navigate('/home');
+    }
+  };
 
   return (
     <div className="website__signin-container">
@@ -51,7 +46,7 @@ const handleSubmit = async (e: { preventDefault: () => void }) => {
         {error && <p className="website__signin-error">{error}</p>}
         <p>
           Don't have an account?{' '}
-          <Link to="/signup" className="website__signin-signup-link">
+          <Link to="/signup" className="website__signin-signup-link" >
             Sign Up
           </Link>
         </p>

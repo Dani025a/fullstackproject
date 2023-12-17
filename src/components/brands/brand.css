@@ -1,0 +1,34 @@
+.brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    margin-bottom: 100px;
+
+}
+
+.brand div {
+    flex: 0 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand-content {
+    background: #FF4820;
+    display: inline-flex;
+    padding: 20px;
+}
+.brand img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+@media (max-width: 600px) {
+    .brand img {
+        width: 50px;
+        height: 50px;
+    }
+}

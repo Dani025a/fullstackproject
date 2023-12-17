@@ -1,6 +1,7 @@
 import { ProductQuery } from "../pages/Store";
-import { useQuery } from "@tanstack/react-query";
-import ApiClient from "../services/api-client";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import ApiClient, { FetchResponse } from "../services/api-client";
+import ms from "ms";
 
 export interface Product {
   description: string;
@@ -10,27 +11,24 @@ export interface Product {
   id: number;
 }
 
-
-
 const apiClient = new ApiClient<Product>("/products");
 
 const useProducts = (productQuery: ProductQuery) => {
-  const categoryId = productQuery.category?.id;
-  console.log('Category ID:', categoryId);
-  
-  const apiParams = {
-    params: {
-      categoryid: categoryId,
-      ordering: productQuery.sortOrder,
-      search: productQuery.searchText,
+  return useInfiniteQuery<FetchResponse<Product>, Error>({
+    queryKey: ["products", productQuery],
+    queryFn: ({ pageParam = 1 }) =>
+      apiClient.getAll({
+        params: {
+          categoryId: productQuery.categoryId,
+          sortOrder: productQuery.sortOrder,
+          page: pageParam,
+        },
+      }),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.next ? allPages.length + 1 : undefined;
     },
-  };
-
-  console.log('API Params:', apiParams);  // Log API parameters
-
-  return useQuery<Product[], Error>(["products", productQuery], () =>
-    apiClient.getAll(apiParams)
-  );
+    staleTime: ms("5s"),
+  });
 };
 
 

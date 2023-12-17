@@ -5,20 +5,22 @@ import logo from '../../assets/logo.svg';
 import signin from '../../assets/signin.svg';
 import cart from '../../assets/cart.svg';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
-import { Link } from 'react-router-dom';
-import {isUserSignedIn, signOut} from '../../utills/authUtils'
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
+
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleMenuSign, setToogleMenuSign] = useState(false);
-  const { openCart, cartQuantity } = useShoppingCart()
+  const {cartQuantity } = useShoppingCart()
   const [scrolled, setScrolled] = useState(false);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(isUserSignedIn());
-  
+  const { isLogged, logout } = useAuth(); 
+  const navigate = useNavigate();
+
   const handleSignOut = () => {
-    signOut();
-    setIsLoggedIn(false); 
+    navigate("/signin")
+    logout();
   };
 
   const handleScroll = () => {
@@ -65,7 +67,7 @@ return (
         </div>
       </div>
       <div className="webshop__navbar-signin ">
-        {isLoggedIn ? (
+        {isLogged ? (
                     <>
                     {toggleMenuSign
                       ? <RiCloseLine color="#fff" size={27} onClick={() => setToogleMenuSign(false)} />

@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Navbar } from './components'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import { Category } from './hooks/useCategories'
 import { Store } from './pages/Store'
 import Home from './pages/Home'
 import ProductDetail from './components/ProductDetail/ProductDetail'
@@ -10,10 +9,14 @@ import { ShoppingCartProvider } from './context/ShoppingCartContext'
 import { ShoppingCart } from './components/Cart/ShoppingCart'
 import Signup from './pages/Signup'
 import Signin from './pages/Signin'
-import { isUserSignedIn } from "./utills/authUtils";
+import { useAuth } from './context/authContext'
+import AboutUs from './pages/AboutUs'
+import { Profile } from './pages/Profile'
+import Orders from './pages/Orders'
+import OrderDetails from './components/ordersDetails/OrdersDetails'
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(isUserSignedIn());
+  const { isLogged } = useAuth(); 
 
   return (
   <ShoppingCartProvider>
@@ -23,14 +26,18 @@ const App = () => {
           <Navbar/>
         </div>
       <Routes>
-      <Route path="/home" element={<Home/>}/>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/aboutus" element={<AboutUs/>}/>
         <Route path="/products" element={<Store/>}/>
-        <Route path="/aboutus" element={<ProductDetail/>}/>
         <Route path="/cart" element={<ShoppingCart/>}/>
-        {isLoggedIn ? (
+        <Route path="/product/:name" element={<ProductDetail/>} />
+
+        {isLogged ? (
               <>
-                <Route path='/profile' element={<Store />} />
-                <Route path='/orders' element={<ProductDetail />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/orders' element={<Orders/>} />
+                <Route path="/order/:orderId" element={<OrderDetails/>} />
+
               </>
             ) : (
               <>

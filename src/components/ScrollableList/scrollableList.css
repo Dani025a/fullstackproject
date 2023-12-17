@@ -1,0 +1,86 @@
+.scrollable-list {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    padding: 0px 100px;
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+}
+
+.scroll-left,
+.scroll-right {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #FF4820;
+    border: none;
+    padding: 15px;
+    z-index: 2;
+    color: white;
+    font-size: 24px; 
+}
+
+.scroll-left {
+    left: 60px;
+}
+
+.scroll-right {
+    right: 60px;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollable-product-card {
+    flex: 0 0 auto;
+    width: 200px; 
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-footer);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-product-card-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.scrollable-product-card-info {
+    padding: 1rem;
+    background: var(--color-footer);
+    flex-grow: 1;
+}
+
+.scrollable-product-card-info h3,
+.scrollable-product-card-info h4 {
+    margin: 0;
+    color: var(--color-text);
+}
+
+.scrollable-product-card-link {
+    display: block;
+    text-align: center;
+    padding: 0.5rem;
+    color: #fff;
+    background: #FF4820;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
