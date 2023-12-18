@@ -1,11 +1,9 @@
-import React from 'react';
 import { adidas, apple, chanel, hugo, versace } from './imports';
 import './brand.css';
 
 const Brand = () => (
     <div className="brand">
         <div className="brand-content">
-
             <div>
                 <img src={adidas} alt="Adidas" />
             </div>

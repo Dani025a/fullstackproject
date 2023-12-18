@@ -1,14 +1,10 @@
-import React from 'react';
 import './productdetail.css';
 import { useLocation } from 'react-router-dom';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
 
-
-
 const ProductDetails = () => {
   const location = useLocation();
   const product = location.state.product;
-
 
   const {
     getItemQuantity,

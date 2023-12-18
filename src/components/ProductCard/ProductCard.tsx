@@ -1,4 +1,3 @@
-import React from 'react';
 import './productCard.css'
 import { Product } from '../../hooks/useProducts';
 import { useShoppingCart } from '../../context/ShoppingCartContext';
@@ -25,7 +24,7 @@ const ProductCard = ({ product }: Props) => {
     <div className="website__productgrid-container_productcard-content">
       <div>
         <h3>{product.name}</h3>
-        <h4>{product.price}  DKK</h4>
+        <h4>${product.price}</h4>
       </div>
     </div>
     <div className="website__productgrid-container_productcard-buy">

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Navbar } from './components'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
@@ -14,6 +13,7 @@ import AboutUs from './pages/AboutUs'
 import { Profile } from './pages/Profile'
 import Orders from './pages/Orders'
 import OrderDetails from './components/ordersDetails/OrdersDetails'
+import PaymentSuccess from './pages/PaymentSuccess'
 
 const App = () => {
   const { isLogged } = useAuth(); 
@@ -37,6 +37,7 @@ const App = () => {
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/orders' element={<Orders/>} />
                 <Route path="/order/:orderId" element={<OrderDetails/>} />
+                <Route path="/payment-success" element={<PaymentSuccess />} /> 
 
               </>
             ) : (

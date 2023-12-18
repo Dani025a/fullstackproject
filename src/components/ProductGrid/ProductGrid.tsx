@@ -7,20 +7,14 @@ import ProductCardLoader from '../ProductCard/ProductCardLoader';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Spinner from '../../utills/Spinner';
 
-
 interface Props {
   productQuery: ProductQuery;
 }
 
-
-
 const ProductGrid = ({ productQuery }: Props) => {
   const { data, error, isLoading, fetchNextPage, hasNextPage } =
     useProducts(productQuery);
-
-
     const totalProductsCount = data?.pages.reduce((acc, page) => acc + (page.results?.length || 0), 0) || 0;
-
 
   if (error) return <div><p className="error-text">{error.message}</p></div>;
   

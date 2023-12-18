@@ -42,7 +42,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setToken(newToken);
     setIsLogged(true);
 
-    const timeout = expirationTime - Date.now();
+    const timeout = expirationTime + Date.now();
     setTimeout(() => {
       logout();
     }, timeout);

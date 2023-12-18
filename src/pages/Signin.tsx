@@ -7,7 +7,7 @@ import './signin.css';
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signIn, isLoading, error } = useSignIn(); // Use the hook
+  const { signIn, isLoading, error } = useSignIn();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -16,7 +16,7 @@ const Signin = () => {
     const result = await signIn(email, password);
 
     if (result) {
-      navigate('/home');
+      navigate('/');
     }
   };
 

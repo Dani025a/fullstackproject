@@ -1,4 +1,3 @@
-import React from 'react';
 import useCategories, { Category } from "../../hooks/useCategories";
 import './categoryList.css';
 

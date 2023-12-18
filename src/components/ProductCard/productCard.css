@@ -1,7 +1,6 @@
 .website__productgrid-container_productcard {
     width: 100%;
     height: 100%;
-
     display: flex;
     flex-direction: column;
     background: var(--color-footer);
@@ -90,8 +89,6 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-
-
 }
 
 
@@ -119,8 +116,7 @@
 
 .website__productgrid-container_productcard_buyedit-quantity {
     display: flex;
-    width: 50%;
-    
+    width: 50%; 
 }
 
 

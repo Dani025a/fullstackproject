@@ -14,7 +14,6 @@ const Navbar = () => {
   const [toggleMenuSign, setToogleMenuSign] = useState(false);
   const {cartQuantity } = useShoppingCart()
   const [scrolled, setScrolled] = useState(false);
-
   const { isLogged, logout } = useAuth(); 
   const navigate = useNavigate();
 

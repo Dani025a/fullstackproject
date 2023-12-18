@@ -15,6 +15,7 @@ type ShoppingCartContext = {
   increaseCartQuantity: (id: number) => void
   decreaseCartQuantity: (id: number) => void
   removeFromCart: (id: number) => void
+  clearCart: () => void
   cartQuantity: number
   cartItems: CartItem[]
 }
@@ -53,6 +54,12 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       }
     })
   }
+
+  function clearCart() {
+    localStorage.setItem("shopping-cart", JSON.stringify([]));
+    setCartItems([]);
+  }
+  
   function decreaseCartQuantity(id: number) {
     setCartItems(currItems => {
       if (currItems.find(item => item.id === id)?.quantity === 1) {
@@ -81,6 +88,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
+        clearCart,
         cartItems,
         cartQuantity,
       }}

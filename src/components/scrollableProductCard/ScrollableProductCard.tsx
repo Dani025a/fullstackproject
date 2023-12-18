@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import './scrollableProductCard.css'
 
@@ -22,7 +21,7 @@ const ScrollableProductCard = ({ product }: Props) => {
       </div>
       <div className="scrollable-product-card-info">
         <h3>{product.name}</h3>
-        <h4>{product.price} DKK</h4>
+        <h4>${product.price}</h4>
       </div>
       <Link to={`/product/${product.name}`} state={{ product: product }} className="scrollable-product-card-link">
         Learn more

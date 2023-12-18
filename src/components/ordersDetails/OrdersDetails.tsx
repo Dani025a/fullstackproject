@@ -1,19 +1,18 @@
-// src/components/OrderDetails.tsx
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import useOrderDetails from '../../hooks/useOrderDetails';
 import './ordersDetails.css';
 
-
-
 const OrderDetails: React.FC = () => {
+
     const { orderId } = useParams<{ orderId: string }>();
     const { data: order, isLoading, isError } = useOrderDetails(orderId ?? '', true);
-  console.log(order)
+  
     if (isLoading) return <div>Loading order details...</div>;
     if (isError || !order) return <div>Unable to fetch order details.</div>;
+    
     const paymentDetail = order.payment.paymentDetails[0];
+
     let statusClass = "";
     switch (order.orderStatus) {
         case "Order received":
@@ -28,6 +27,7 @@ const OrderDetails: React.FC = () => {
         default:
             statusClass = "";
     }
+
     return (
       <div className="order-details-container">
         <h2>Order Details (ID: {orderId})</h2>

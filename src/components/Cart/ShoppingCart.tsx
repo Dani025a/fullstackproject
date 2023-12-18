@@ -23,6 +23,17 @@ export function ShoppingCart() {
     const item = products?.find(i => i.id === cartItem.id);
     return total + (item?.price || 0) * cartItem.quantity;
   }, 0);
+  const productsInCart = cartItems.map(cartItem => {
+    const product = products?.find(p => p.id === cartItem.id);
+    return {
+      id: cartItem.id,
+      name: product?.name || 'Unknown Product',
+      quantity: cartItem.quantity,
+      amount: product?.price
+    };
+  });
+
+  console.log(productsInCart)
 
   const handlePayment = async () => {
     const stripe = await stripePromise;
@@ -34,6 +45,7 @@ export function ShoppingCart() {
     try {
       const { data: { sessionId } } = await axiosInstance.post('payments/create-checkout-session', {
         amount: total * 100,
+        items: productsInCart,
       });
 
       const result = await stripe.redirectToCheckout({ sessionId });

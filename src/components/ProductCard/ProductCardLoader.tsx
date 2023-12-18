@@ -1,4 +1,3 @@
-import React from 'react';
 import './ProductCardLoader.css'
 import imageLoader from '../../assets/imageLoarder.svg'
 

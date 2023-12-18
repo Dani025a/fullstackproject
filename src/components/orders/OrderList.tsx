@@ -1,10 +1,8 @@
-// src/components/OrdersList.tsx
-
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { Order } from '../../hooks/useOrder';
 import './orderList.css';
-import OrderCard from '../orcerCard/OrderCard';
+import OrderCard from '../orderCard/OrderCard';
 
 interface OrdersListProps {
   orders: Order[];

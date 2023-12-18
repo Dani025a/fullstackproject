@@ -6,6 +6,7 @@ interface OrderCardProps {
     order: Order;
     onClick: () => void;
   }
+
   
   const OrderCard: React.FC<OrderCardProps> = ({ order, onClick }) => {
     return (

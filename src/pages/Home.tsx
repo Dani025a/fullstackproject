@@ -1,4 +1,3 @@
-import React from 'react';
 import Brand from '../components/brands/Brand';
 import ScrollableList from '../components/ScrollableList/ScrollableList';
 import "./home.css";

@@ -1,0 +1,40 @@
+.payment-success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.success-icon {
+    color: #4CAF50;
+    font-size: 4rem;
+}
+
+.heading {
+    margin-top: 16px;
+    font-size: 1.5rem;
+}
+
+.message {
+    margin-top: 16px;
+    font-size: 1rem;
+    color: #777;
+}
+.payment-success-container button {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin-top: 10px;
+    color: #fff;
+    background: #FF4820;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+
+}
