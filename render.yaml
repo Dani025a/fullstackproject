@@ -1,0 +1,45 @@
+# Exported from Render on 2024-08-14T12:35:48Z
+services:
+- type: web
+  name: Portfolio-Backend-Dani
+  runtime: node
+  repo: https://github.com/Dani025a/Portfolio-Backend
+  plan: free
+  envVars:
+  - key: server-ca.pem
+    sync: false
+  - key: client-key.pem
+    sync: false
+  - key: client-cert.pem
+    sync: false
+  - key: SSL_KEY_PATH
+    sync: false
+  - key: SSL_CERT_PATH
+    sync: false
+  - key: SSL_CA_PATH
+    sync: false
+  - key: FRONTEND_URL
+    sync: false
+  - key: DB_USER
+    sync: false
+  - key: DB_PASSWORD
+    sync: false
+  - key: DB_HOST
+    sync: false
+  - key: DB_DATABASE
+    sync: false
+  region: frankfurt
+  buildCommand: npm install
+  startCommand: node app.js
+  rootDir: .
+- type: web
+  name: danijelgitanovic
+  runtime: static
+  repo: https://github.com/Dani025a/Portfolio-Danijel-Gitanovic
+  envVars:
+  - key: VITE_BASE_URL
+    sync: false
+  buildCommand: npm install && npm run build
+  staticPublishPath: dist
+  rootDir: .
+version: "1"
